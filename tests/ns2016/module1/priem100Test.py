@@ -16,4 +16,4 @@ def exact(test):
 @t.test(1)
 def numberOfPrimes(test):
 	test.test = lambda : assertlib.contains(lib.outputOf(_fileName).split("\n")[1].strip(), "25")
-	test.description = lambda : "output contains correct number of primes"
+	test.description = lambda : "correct number of primes"
