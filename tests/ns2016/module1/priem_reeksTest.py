@@ -4,7 +4,7 @@ import check.assertlib as assertlib
 
 @t.test(0)
 def correctDistance(test):
-	test.test = lambda : assertlib.exact(lib.outputOf(_fileName).split("\n")[0], "36")
+	test.test = lambda : assertlib.exact(lib.outputOf(_fileName).split("\n")[0], "35")
 	test.description = lambda : "correct distance"
 
 @t.test(1)
