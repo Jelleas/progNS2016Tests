@@ -14,23 +14,27 @@ def hasBeweging(test):
 		return funcIn(source, "beweging")
 
 	test.test = testMethod
-	test.description = lambda : "definieert een functie `beweging`"
+	test.description = lambda : "definieert de functie `beweging()`"
 
+@t.passed(hasBeweging)
 @t.test(1)
 def correctBalBeweging0(test):
 	test.test = lambda : assertlib.exact(lib.getFunction("beweging", _fileName)(16, 79, False), False)
 	test.description = lambda : "`beweging` werkt met snelheid = 16, hoek = 79, geen animatie"
 
+@t.passed(hasBeweging)
 @t.test(2)
 def correctBalBeweging1(test):
 	test.test = lambda : assertlib.exact(lib.getFunction("beweging", _fileName)(3, 30, False), False)
 	test.description = lambda : "`beweging` werkt met snelheid = 3, hoek = 30, geen animatie"
 
+@t.passed(hasBeweging)
 @t.test(3)
 def correctBalBeweging2(test):
 	test.test = lambda : assertlib.exact(lib.getFunction("beweging", _fileName)(11.5, 45, False), True)
 	test.description = lambda : "`beweging` werkt met snelheid = 11.5, hoek = 45, geen animatie"
 
+@t.passed(hasBeweging)
 @t.test(4)
 def correctOutput(test):
 	def testMethod():
