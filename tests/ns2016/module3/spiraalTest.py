@@ -5,11 +5,11 @@ import re
 import os
 
 @t.test(0)
-def containsRequiredFunction(test):
-	test.test = lambda : assertlib.fileContainsFunctionCalls(_fileName, "spiraal")
+def containsRequiredFunctionDefinitions(test):
+	test.test = lambda : assertlib.fileContainsFunctionDefinitions(_fileName, "spiraal")
 	test.description = lambda : "definieert de functie `spiraal()`"
 
-@t.passed(containsRequiredFunction)
+@t.passed(containsRequiredFunctionDefinitions)
 @t.test(1)
 def containsRequiredFunctionCalls(test):
 	test.test = lambda : assertlib.fileContainsFunctionCalls(_fileName, "spiraal", "draw", "pause", "clf")

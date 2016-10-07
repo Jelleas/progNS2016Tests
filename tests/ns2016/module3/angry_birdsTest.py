@@ -8,7 +8,7 @@ def before():
 
 @t.test(0)
 def hasBeweging(test):
-	test.test = lambda : assertlib.fileContainsFunctionCalls(_fileName, "beweging")
+	test.test = lambda : assertlib.fileContainsFunctionDefinitions(_fileName, "beweging")
 	test.description = lambda : "definieert de functie `beweging()`"
 
 @t.passed(hasBeweging)
