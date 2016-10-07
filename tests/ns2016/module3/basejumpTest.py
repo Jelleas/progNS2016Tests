@@ -8,15 +8,7 @@ def before():
 
 @t.test(0)
 def containsRequiredFunctions(test):
-	def testMethod():
-		source = lib.source(_fileName)
-		funcIn = lambda src, fName : assertlib.match(src, re.compile(".*{}\(.*".format(fName), re.DOTALL))
-		for fName in ["basejump"]:
-			if not funcIn(source, fName):
-				return False
-		return True
-
-	test.test = testMethod
+	test.test = lambda : assertlib.fileContainsFunctionCalls(_fileName, "basejump")
 	test.description = lambda : "definieert de functie `basejump()`"
 
 @t.passed(containsRequiredFunctions)

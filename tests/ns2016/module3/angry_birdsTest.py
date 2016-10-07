@@ -8,12 +8,7 @@ def before():
 
 @t.test(0)
 def hasBeweging(test):
-	def testMethod():
-		source = lib.source(_fileName)
-		funcIn = lambda src, fName : assertlib.match(src, re.compile(".*{}\(.*".format(fName), re.DOTALL))
-		return funcIn(source, "beweging")
-
-	test.test = testMethod
+	test.test = lambda : assertlib.fileContainsFunctionCalls(_fileName, "beweging")
 	test.description = lambda : "definieert de functie `beweging()`"
 
 @t.passed(hasBeweging)
