@@ -14,7 +14,7 @@ def containsRequiredFunctionDefinitions(test):
 @t.passed(containsRequiredFunctionDefinitions)
 @t.test(1)
 def correctTimeTillParachute(test):
-	test.test = lambda : assertlib.contains(lib.outputOf(_fileName).split("\n")[0], "12.2")
+	test.test = lambda : assertlib.match(lib.outputOf(_fileName).split("\n")[0], ".*12\.[1-2].*")
 	test.description = lambda : "print de tijd die verstrijkt tot de parachute open moet (zonder luchtweerstand)"
 
 @t.passed(containsRequiredFunctionDefinitions)
