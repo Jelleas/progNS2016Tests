@@ -12,5 +12,5 @@ def containsRequiredFunctionDefinitions(test):
 @t.passed(containsRequiredFunctionDefinitions)
 @t.test(1)
 def containsRequiredFunctionCalls(test):
-	test.test = lambda : assertlib.fileContainsFunctionCalls(_fileName, "student", "draw", "pause", "clf")
+	test.test = lambda : assertlib.fileContainsFunctionCalls(_fileName, "draw", "pause", "clf")
 	test.description = lambda : "vertoont een of andere vorm van animatie"
