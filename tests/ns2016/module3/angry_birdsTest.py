@@ -6,6 +6,10 @@ import re
 def before():
 	lib.neutralizeFunctionFromImport(lib.module(_fileName), "show", "matplotlib.pyplot")
 
+def after():
+	import matplotlib.pyplot
+	reload(matplotlib.pyplot)
+
 @t.test(0)
 def hasBeweging(test):
 	test.test = lambda : assertlib.fileContainsFunctionDefinitions(_fileName, "beweging")
@@ -43,8 +47,7 @@ def correctOutput(test):
 					del answers[i]
 					break
 			else:
-				print answers, line
-				return False
+				return False, "{} is niet correct".format(line)
 		return len(answers) == 0
 
 	test.test = testMethod

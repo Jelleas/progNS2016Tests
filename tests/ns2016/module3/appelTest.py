@@ -6,6 +6,10 @@ import re
 def before():
 	lib.neutralizeFunctionFromImport(lib.module(_fileName), "show", "matplotlib.pyplot")
 
+def after():
+	import matplotlib.pyplot
+	reload(matplotlib.pyplot)
+
 @t.test(0)
 def containsRequiredFunctionDefinitions(test):
 	test.test = lambda : assertlib.fileContainsFunctionDefinitions(_fileName, "appel")

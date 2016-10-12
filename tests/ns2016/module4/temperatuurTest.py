@@ -6,6 +6,10 @@ def before():
 	mod = lib.module(_fileName)
 	lib.neutralizeFunctionFromImport(mod, "show", "matplotlib.pyplot")
 
+def after():
+	import matplotlib.pyplot
+	reload(matplotlib.pyplot)
+
 @t.test(0)
 def correctMaxTemp(test):
 	test.test = lambda : assertlib.match(lib.outputOf(_fileName).split("\n")[0], ".*36[,.]8.*")
