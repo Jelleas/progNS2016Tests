@@ -18,11 +18,11 @@ def containsRequiredFunctionDefinitions(test):
 @t.passed(containsRequiredFunctionDefinitions)
 @t.test(1)
 def correctC(test):
-	test.test = lambda : assertlib.contains(lib.outputOf(_fileName).split("\n")[0], "60.")
+	test.test = lambda : assertlib.numberOnLine(60.3, lib.getLine(lib.outputOf(_fileName), 0), deviation = 1)
 	test.description = lambda : "print de beste waarde van c"
 
 @t.passed(containsRequiredFunctionDefinitions)
 @t.test(2)
 def correctUncertainy(test):
-	test.test = lambda : assertlib.contains(lib.outputOf(_fileName).split("\n")[1], "1.5")
+	test.test = lambda : assertlib.numberOnLine(1.5, lib.getLine(lib.outputOf(_fileName), 1), deviation = 0.1)
 	test.description = lambda : "print de onzekerheid bij c"
