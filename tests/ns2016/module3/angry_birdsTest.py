@@ -29,4 +29,4 @@ def correctOutput(test):
 		return len(answers) <= 3
 
 	test.test = testMethod
-	test.description = lambda : "print de hoeken waarbij de vogel de sensor raakt"
+	test.description = lambda : "print de juiste hoeken waarbij de vogel de sensor raakt"

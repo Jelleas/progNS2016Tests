@@ -24,5 +24,5 @@ def correctTimeTillParachute(test):
 @t.passed(containsRequiredFunctionDefinitions)
 @t.test(2)
 def correctExtraTime(test):
-	test.test = lambda : assertlib.numberOnLine(5.06, lib.getLine(lib.outputOf(_fileName), 1), deviation = 0.01)
+	test.test = lambda : assertlib.numberOnLine(5.06, lib.getLine(lib.outputOf(_fileName), 1), deviation = 0.1)
 	test.description = lambda : "print de tijd die er bij komt door de luchtweerstand"
