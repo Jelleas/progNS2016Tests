@@ -39,16 +39,12 @@ def correctOutput(test):
 	def testMethod():
 		answers = [-88, -87, -86, -84, -81, -69, -68, -67, -66, -65, 15, 16, 17, 74, 75, 81, 87]
 		for line in lib.outputOf(_fileName).split("\n"):
-			if not line.strip():
-				continue
-
 			for i, answer in enumerate(answers):
 				if assertlib.contains(line, str(answer)):
 					del answers[i]
 					break
-			else:
-				return False, "{} is niet correct".format(line)
-		return len(answers) == 0
+
+		return len(answers) <= 3
 
 	test.test = testMethod
 	test.description = lambda : "print de hoeken waarbij de vogel de sensor raakt"
