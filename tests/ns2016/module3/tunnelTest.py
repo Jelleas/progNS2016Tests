@@ -6,6 +6,10 @@ import re
 def before():
 	lib.neutralizeFunctionFromImport(lib.module(_fileName), "show", "matplotlib.pyplot")
 
+def after():
+	import matplotlib.pyplot
+	reload(matplotlib.pyplot)
+
 @t.test(0)
 def containsRequiredFunctionDefinitions(test):
 	test.test = lambda : assertlib.fileContainsFunctionDefinitions(_fileName, "tunnel")
@@ -14,11 +18,11 @@ def containsRequiredFunctionDefinitions(test):
 @t.passed(containsRequiredFunctionDefinitions)
 @t.test(1)
 def correctMaxSpeed(test):
-	test.test = lambda : assertlib.match(lib.outputOf(_fileName).split("\n")[0], ".*28[0-9][0-9][0-9].*")
+	test.test = lambda : assertlib.numberOnLine(28474.32, lib.getLine(lib.outputOf(_fileName), 0), deviation = 500)
 	test.description = lambda : "print de maximale snelheid van de appel"
 
 @t.passed(containsRequiredFunctionDefinitions)
 @t.test(2)
 def correctTimeTillReturn(test):
-	test.test = lambda : assertlib.match(lib.outputOf(_fileName).split("\n")[1], ".*50[0-9][0-9].*")
+	test.test = lambda : assertlib.numberOnLine(5061, lib.getLine(lib.outputOf(_fileName), 1), deviation = 50)
 	test.description = lambda : "print het tijdstip van terugkeer na loslaten"
