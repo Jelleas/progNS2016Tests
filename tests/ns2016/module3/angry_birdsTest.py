@@ -17,24 +17,6 @@ def hasBeweging(test):
 
 @t.passed(hasBeweging)
 @t.test(1)
-def correctBalBeweging0(test):
-	test.test = lambda : assertlib.exactAndSameType(lib.getFunction("beweging", _fileName)(16, 79, False), False)
-	test.description = lambda : "`beweging` werkt met snelheid = 16, hoek = 79, geen animatie"
-
-@t.passed(hasBeweging)
-@t.test(2)
-def correctBalBeweging1(test):
-	test.test = lambda : assertlib.exactAndSameType(lib.getFunction("beweging", _fileName)(3, 30, False), False)
-	test.description = lambda : "`beweging` werkt met snelheid = 3, hoek = 30, geen animatie"
-
-@t.passed(hasBeweging)
-@t.test(3)
-def correctBalBeweging2(test):
-	test.test = lambda : assertlib.exactAndSameType(lib.getFunction("beweging", _fileName)(11.5, 45, False), True)
-	test.description = lambda : "`beweging` werkt met snelheid = 11.5, hoek = 45, geen animatie"
-
-@t.passed(hasBeweging)
-@t.test(4)
 def correctOutput(test):
 	def testMethod():
 		answers = [-88, -87, -86, -84, -81, -69, -68, -67, -66, -65, 15, 16, 17, 74, 75, 81, 87]
