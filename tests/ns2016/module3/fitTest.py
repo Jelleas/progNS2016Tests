@@ -5,6 +5,7 @@ import re
 
 def before():
 	lib.neutralizeFunctionFromImport(lib.module(_fileName), "show", "matplotlib.pyplot")
+	lib.neutralizeFunctionFromImport(lib.module(_fileName), "pause", "matplotlib.pyplot")
 
 def after():
 	import matplotlib.pyplot

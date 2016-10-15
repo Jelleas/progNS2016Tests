@@ -5,6 +5,7 @@ import re
 
 def before():
 	lib.neutralizeFunctionFromImport(lib.module(_fileName), "show", "matplotlib.pyplot")
+	lib.neutralizeFunctionFromImport(lib.module(_fileName), "pause", "matplotlib.pyplot")
 
 def after():
 	import matplotlib.pyplot
@@ -24,5 +25,5 @@ def correctTimeTillParachute(test):
 @t.passed(containsRequiredFunctionDefinitions)
 @t.test(2)
 def correctExtraTime(test):
-	test.test = lambda : assertlib.numberOnLine(5.06, lib.getLine(lib.outputOf(_fileName), 1), deviation = 0.01)
+	test.test = lambda : assertlib.numberOnLine(5.06, lib.getLine(lib.outputOf(_fileName), 1), deviation = 0.1)
 	test.description = lambda : "print de tijd die er bij komt door de luchtweerstand"
