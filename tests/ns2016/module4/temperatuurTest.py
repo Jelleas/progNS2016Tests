@@ -3,8 +3,9 @@ import checkpy.lib as lib
 import checkpy.assertlib as assertlib
 
 def before():
-	lib.neutralizeFunctionFromImport(lib.module(_fileName), "show", "matplotlib.pyplot")
-	lib.neutralizeFunctionFromImport(lib.module(_fileName), "pause", "matplotlib.pyplot")
+	import matplotlib.pyplot as plt
+	lib.neutralizeFunction(plt.show)
+	lib.neutralizeFunction(plt.pause)
 
 def after():
 	import matplotlib.pyplot
