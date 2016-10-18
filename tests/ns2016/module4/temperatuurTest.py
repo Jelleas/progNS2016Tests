@@ -15,42 +15,43 @@ def after():
 @t.test(0)
 def correctMaxTemp(test):
 	test.test = lambda : assertlib.match(lib.getLine(lib.outputOf(_fileName), 0), ".*36[,.]8.*")
-	test.description = lambda : "correct maximum temperature"
+	test.description = lambda : "print de maximale temperatuur"
 
 @t.test(01)
 def correctDayOfMaxTemp(test):
-	test.test = lambda : (\
-		assertlib.match(lib.getLine(lib.outputOf(_fileName), 0), ".*27-[0]?6-1947.*"),\
-		"note: please provide output in the form of DD-MM-YYYY")
-	test.description = lambda : "correct day of maximum temperature"
+	def testMethod():
+		line = lib.getLine(lib.outputOf(_fileName), 0)
+		return assertlib.contains(line, "27") and assertlib.contains(line.lower(), "jun") and assertlib.contains(line, "1947")
+	test.test = testMethod
+	test.description = lambda : "print de dag van de maximale temperatuur"
 
 @t.test(10)
 def correctMinTemp(test):
 	test.test = lambda : assertlib.match(lib.getLine(lib.outputOf(_fileName), 1), ".*24[,.]8.*")
-	test.description = lambda : "correct minimum temperature"
+	test.description = lambda : "print de minimale temperatuur"
 
 @t.test(11)
 def correctDayOfMinTemp(test):
-	test.test = lambda : (\
-		assertlib.match(lib.getLine(lib.outputOf(_fileName), 1), ".*27-[0]?1-1942.*"),\
-		"note: please provide output in the form of DD-MM-YYYY")
-	test.description = lambda : "correct day of minimum temperature"
+	def testMethod():
+		line = lib.getLine(lib.outputOf(_fileName), 1)
+		return assertlib.contains(line, "27") and assertlib.contains(line.lower(), "jan") and assertlib.contains(line, "1942")
+	test.test = testMethod
+	test.description = lambda : "print de dag van de minimale temperatuur"
 
 @t.test(20)
 def correctLongestPeriod(test):
 	test.test = lambda : assertlib.contains(lib.getLine(lib.outputOf(_fileName), 2), "21")
-	test.description = lambda : "correct longest streak of days on which it froze"
+	test.description = lambda : "print de langste periode dat het aaneengesloten heeft gevroren"
 
 @t.test(21)
 def correctFinalDayOfLongestPeriod(test):
-	test.test = lambda : \
-		(assertlib.match(lib.getLine(lib.outputOf(_fileName), 2), ".*(24|25)-[0]?2-1947.*"),\
-		 "note: please provide output in the form of DD-MM-YYYY")
-	test.description = lambda : "correct final day of the longest streak of days on which it froze"
+	def testMethod():
+		line = lib.getLine(lib.outputOf(_fileName), 2)
+		return assertlib.contains(line, "24") and assertlib.contains(line.lower(), "feb") and assertlib.contains(line, "1947")
+	test.test = testMethod
+	test.description = lambda : "print de laatste dag van de langste periode dat het aaneengesloten heeft gevroren"
 
 @t.test(30)
 def correctHeatWave2015(test):
-	test.test = lambda : \
-		(assertlib.match(lib.getLine(lib.outputOf(_fileName), 3), ".*(True|true).*"),\
-		 "note: please provide output in the form of true or false")
-	test.description = lambda : "correct on whether there was a heatwave in 2015"
+	test.test = lambda : assertlib.contains(lib.getLine(lib.outputOf(_fileName), 3), "1910")
+	test.description = lambda : "print het eerste jaartal waarin een hittegolf voorkwam"
