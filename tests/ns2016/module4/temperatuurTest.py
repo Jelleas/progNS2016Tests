@@ -52,6 +52,6 @@ def correctFinalDayOfLongestPeriod(test):
 	test.description = lambda : "print de laatste dag van de langste periode dat het aaneengesloten heeft gevroren"
 
 @t.test(30)
-def correctHeatWave2015(test):
-	test.test = lambda : assertlib.contains(lib.getLine(lib.outputOf(_fileName), 3), "1910")
+def correctHeatwave(test):
+	test.test = lambda : assertlib.contains(lib.getLine(lib.outputOf(_fileName), 3), "1911")
 	test.description = lambda : "print het eerste jaartal waarin een hittegolf voorkwam"
