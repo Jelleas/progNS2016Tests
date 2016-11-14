@@ -3,23 +3,41 @@ import checkpy.lib as lib
 import checkpy.assertlib as assertlib
 import sys
 
-@t.test(0)
-def correctMijn_random(test):
+def before():
+	import matplotlib.pyplot as plt
+	plt.switch_backend("Agg")
+	lib.neutralizeFunction(plt.pause)
+
+def after():
+	import matplotlib.pyplot as plt
+	plt.switch_backend("TkAgg")
+	reload(plt)
+
+@t.test(00)
+def hasRandomTussen(test):
+	test.test = lambda : assertlib.fileContainsFunctionDefinitions(_fileName, "randomTussen")
+	test.description = lambda : "definieert de functie randomTussen()"
+
+@t.passed(hasRandomTussen)
+@t.test(01)
+def correctRandomTussen(test):
 	def testMethod():
-		mijn_random = lib.getFunction("mijn_random", _fileName)
-		if not assertlib.containsOnly([mijn_random(1,1) for i in range(100)], [1]):
-			return False, "Huh? a random number between 1 and 1 gives something unexpected"
-		if not assertlib.containsOnly([mijn_random(0,1) for i in range(100)], [0,1]):
-			return False, "Huh? a random number between 0 and 1 can become something other than 0 or 1?!"
-		return True, ""
+		randomTussen = lib.getFunction("randomTussen", _fileName)
+		if not assertlib.containsOnly([randomTussen(1,1) for i in range(100)], [1]):
+			return False, "Huh? Een willekeurig getal tussen 1 en 1 wordt iets anders dan 1?!"
+		if not assertlib.containsOnly([randomTussen(0,1) for i in range(100)], [0,1]):
+			return False, "Huh? Een willekeurig getal tussen 0 en 1 wordt iets anders dan 0 of 1?!"
+		return True
 	test.test = testMethod
-	
-	test.description = lambda : "mijn_random functions correctly"
-	test.fail = lambda info : str(info)
+	test.description = lambda : "randomTussen werkt correct"
 
+@t.test(10)
+def hasVierkant(test):
+	test.test = lambda : assertlib.fileContainsFunctionDefinitions(_fileName, "vierkant")
+	test.description = lambda : "definieert de functie vierkant()"
 
-@t.passed(correctMijn_random)
-@t.test(1)
+@t.passed(hasVierkant)
+@t.test(11)
 def correctVierkant(test):
-	test.test = lambda : assertlib.between(lib.getFunction("Vierkant", _fileName)(), 0.45, 0.55)
-	test.description = lambda : "correct distance calculated by Vierkant"
+	test.test = lambda : assertlib.between(lib.getFunction("vierkant", _fileName)(), 0.51, 0.54)
+	test.description = lambda : "vierkant geeft de goede afstand terug"

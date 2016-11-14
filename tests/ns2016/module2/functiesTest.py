@@ -1,22 +1,30 @@
 import checkpy.tests as t
 import checkpy.lib as lib
 import checkpy.assertlib as assertlib
-import sys
+
+def before():
+	import matplotlib.pyplot as plt
+	plt.switch_backend("Agg")
+	lib.neutralizeFunction(plt.pause)
+
+def after():
+	import matplotlib.pyplot as plt
+	plt.switch_backend("TkAgg")
+	reload(plt)
 
 @t.test(0)
-def correct(test):
-	def testMethod():
-		points = lib.getFunction("nulpunten", _fileName)(1,2,-10)
-		for i, point in enumerate(points):
-			points[i] = int(point * 10)
-		testResult = 23 in points and -43 in points
-		return testResult, ""
-	test.test = testMethod
-	
-	test.description = lambda : "output of nulpunten is correct for the example a=1, b=2, c=-10"
+def hasNulpunten(test):
+	test.test = lambda : assertlib.fileContainsFunctionDefinitions(_fileName, "nulpunten")
+	test.description = lambda : "definieert de functie nulpunten()"
 
-
+@t.passed(hasNulpunten)
 @t.test(1)
+def correct(test):
+	test.test = lambda : sorted(int(p * 10) for p in lib.getFunction("nulpunten", _fileName)(1,2,-10)) == [-43, 23]
+	test.description = lambda : "nulpunten werkt correct voor invoer a=1, b=2, c=-10"
+
+@t.passed(hasNulpunten)
+@t.test(2)
 def returnTypeIsList(test):
 	test.test = lambda : assertlib.sameType(lib.getFunction("nulpunten", _fileName)(1,2,-10), [])
-	test.description = lambda : "correct return type of nulpunten"
+	test.description = lambda : "nulpunten geeft een lijst terug"
