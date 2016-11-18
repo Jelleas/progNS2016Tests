@@ -25,8 +25,8 @@ def correctRandomTussen(test):
 		randomTussen = lib.getFunction("randomTussen", _fileName)
 		if not assertlib.containsOnly([int(randomTussen(1,1)) for i in range(100)], [1]):
 			return False, "Huh? Een willekeurig getal tussen 1 en 1 wordt iets anders dan 1?!"
-		if not assertlib.containsOnly([int(randomTussen(0,2)) for i in range(100)], [0,1,2]):
-			return False, "Huh? Een willekeurig getal tussen 0 en 2 kan groter of kleiner worden dan 0 of 2?!"
+		if not assertlib.containsOnly([int(randomTussen(-5,5)) for i in range(100)], range(-5, 6)):
+			return False, "Huh? Een willekeurig getal tussen -5 en 5 kan groter of kleiner worden dan -5 of 5?!"
 		return True
 	test.test = testMethod
 	test.description = lambda : "randomTussen() werkt correct"
