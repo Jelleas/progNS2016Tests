@@ -23,13 +23,13 @@ def hasRandomTussen(test):
 def correctRandomTussen(test):
 	def testMethod():
 		randomTussen = lib.getFunction("randomTussen", _fileName)
-		if not assertlib.containsOnly([randomTussen(1,1) for i in range(100)], [1]):
+		if not assertlib.containsOnly([int(randomTussen(1,1)) for i in range(100)], [1]):
 			return False, "Huh? Een willekeurig getal tussen 1 en 1 wordt iets anders dan 1?!"
-		if not assertlib.containsOnly([randomTussen(0,1) for i in range(100)], [0,1]):
-			return False, "Huh? Een willekeurig getal tussen 0 en 1 wordt iets anders dan 0 of 1?!"
+		if not assertlib.containsOnly([int(randomTussen(0,2)) for i in range(100)], [0,1,2]):
+			return False, "Huh? Een willekeurig getal tussen 0 en 2 kan groter of kleiner worden dan 0 of 2?!"
 		return True
 	test.test = testMethod
-	test.description = lambda : "randomTussen werkt correct"
+	test.description = lambda : "randomTussen() werkt correct"
 
 @t.test(10)
 def hasVierkant(test):
