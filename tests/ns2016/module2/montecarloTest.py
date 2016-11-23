@@ -27,11 +27,11 @@ def correctFunc1(test):
 @t.passed(hasMontecarlo)
 @t.test(2)
 def correctFunc2(test):
-	test.test = lambda : assertlib.between(lib.getFunction("montecarlo", _fileName)(lambda x : math.tan(math.cos(math.sin(x))), 0.2, 0, 2.2, 1), 1.56, 1.6)
-	test.description = lambda : "montecarlo werkt correct voor tan(cos(sin(x))) van x1=0.2, y1=0 tot x2=2.2, y2=1"
+	test.test = lambda : assertlib.between(lib.getFunction("montecarlo", _fileName)(lambda x : math.tan(math.cos(math.sin(x))), 0.2, 0, 2.2, 1.5), 1.69, 1.73)
+	test.description = lambda : "montecarlo werkt correct voor tan(cos(sin(x))) van x1=0.2, y1=0 tot x2=2.2, y2=1.5"
 
 @t.passed(hasMontecarlo)
 @t.test(3)
 def correctFunc3(test):
-	test.test = lambda : assertlib.between(lib.getFunction("montecarlo", _fileName)(lambda x : math.sin(x**2), 0, 0, math.pi, 1), 1.22, 1.29)
-	test.description = lambda : "montecarlo werkt correct voor sin(x^2) van x1=0, y1=0 tot x2=pi, y2=1"
+	test.test = lambda : assertlib.between(lib.getFunction("montecarlo", _fileName)(lambda x : math.sin(x**2), 0, -1, math.pi, 1), 0.75, 1.79)
+	test.description = lambda : "montecarlo werkt correct voor sin(x^2) van x1=0, y1=-1 tot x2=pi, y2=1"
