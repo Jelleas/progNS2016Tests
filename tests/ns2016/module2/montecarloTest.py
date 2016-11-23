@@ -33,5 +33,5 @@ def correctFunc2(test):
 @t.passed(hasMontecarlo)
 @t.test(3)
 def correctFunc3(test):
-	test.test = lambda : assertlib.between(lib.getFunction("montecarlo", _fileName)(lambda x : math.sin(x**2), 0, -1, math.pi, 1), 0.75, 1.79)
+	test.test = lambda : assertlib.between(lib.getFunction("montecarlo", _fileName)(lambda x : math.sin(x**2), 0, -1, math.pi, 1), 0.75, 0.79)
 	test.description = lambda : "montecarlo werkt correct voor sin(x^2) van x1=0, y1=-1 tot x2=pi, y2=1"
