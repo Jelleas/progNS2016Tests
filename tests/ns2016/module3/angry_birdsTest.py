@@ -21,19 +21,21 @@ def hasBeweging(test):
 @t.test(1)
 def correctOutput(test):
 	def testMethod():
-		answers = [-88, -87, -86, -84, -81, -69, -68, -67, -66, -65, 15, 16, 17, 74, 75, 81, 87]
+		lines = [line for line in lib.outputOf(_fileName).split("\n") if line.strip()]
+		answers = [-87, -86, -83, -81, -68, -67, -66, -65, 14, 15, 16, 74, 75, 76, 81, 87]
+		wrongAnswers = []
 		nAnswers = len(answers)
 		nCorrect = 0
-		for line in lib.outputOf(_fileName).split("\n"):
-			for i, answer in enumerate(answers):
+		for answer in answers[:]:
+			for line in lines:
 				if assertlib.contains(line, str(answer)):
-					del answers[i]
+					lines.remove(line)
+					answers.remove(answer)
 					nCorrect += 1
 					break
 			else:
 				nCorrect -= 1
-
-		return nAnswers - nCorrect <= 5 
+		return nCorrect == nAnswers, "miste o.a. verwachte antwoorden {}\nVond o.a. op de volgende regels een niet kloppend antwoord: {}".format(answers[:2], lines[:2])
 
 	test.test = testMethod
 	test.description = lambda : "print de juiste hoeken waarbij de vogel de sensor raakt"
