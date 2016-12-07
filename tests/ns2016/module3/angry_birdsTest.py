@@ -23,7 +23,6 @@ def correctOutput(test):
 	def testMethod():
 		lines = [line for line in lib.outputOf(_fileName).split("\n") if line.strip()]
 		answers = [-87, -86, -83, -81, -68, -67, -66, -65, 14, 15, 16, 74, 75, 76, 81, 87]
-		wrongAnswers = []
 		nAnswers = len(answers)
 		nCorrect = 0
 		for answer in answers[:]:
